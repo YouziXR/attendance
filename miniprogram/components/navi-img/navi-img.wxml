@@ -1,0 +1,5 @@
+<!-- components/navi-img/navi-img.wxml -->
+<navigator class="basic-inner-card" target="self" url="{{naviUrl}}" hover-class="" open-type="navigate">
+  <image class="img" src="{{imgUrl}}" mode="widthFix" />
+  <text class="hint-msg">{{hintMsg}}</text>
+</navigator>

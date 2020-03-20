@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "test-cpmt": "../../components/testCpmt/testCpmt",
+    "navi-img": "../../components/navi-img/navi-img",
+    "basic-card": "../../components/basic-card/basic-card"
+  }
+}

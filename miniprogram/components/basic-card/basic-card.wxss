@@ -1,0 +1,14 @@
+.complex-card {
+  width: 100%;
+  flex-direction: column;
+  border-right: none;
+  border-bottom: none;
+}
+.card-title {
+  box-sizing: border-box;
+  padding: 15rpx 0 15rpx 20rpx;
+  width: 100%;
+  display: flex;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}

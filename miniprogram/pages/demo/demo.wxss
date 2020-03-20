@@ -1,0 +1,53 @@
+.container {
+  height: 100%;
+  padding: 15rpx;
+}
+
+.header {
+  padding: 20rpx;
+}
+
+.user-avatar {
+  /* display: block; */
+  overflow: hidden;
+  width: 160rpx;
+  height: 160rpx;
+  margin-left: 20rpx;
+  border-radius: 50%;
+  /* border: 2px solid #eee; */
+  /* box-shadow: 5rpx 5rpx 5rpx #666; */
+}
+.user-nick-name {
+  margin-left: 40rpx;
+}
+.edit-info {
+  position: absolute;
+  right: 40rpx;
+  font-size: 70%;
+  padding: 12rpx;
+  color: #666666;
+  border: 1px solid #666666;
+  border-radius: 25rpx;
+}
+.hover-edit-info {
+  background-color: rgba(229, 229, 229, 0.8);
+}
+.card-content .special-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 15px;
+}
+.special-list .title {
+  margin: 15rpx 0;
+}
+.special-list .content {
+  margin-bottom: 15rpx;
+  font-size: 95%;
+  color: #909090;
+}
+.special-list .count {
+  margin-bottom: 15rpx;
+  font-size: 90%;
+  color: rgba(144, 144, 144, 0.8);
+}

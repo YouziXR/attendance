@@ -1,0 +1,2 @@
+<!--components/testCpmt/testCpmt.wxml-->
+<text bind:tap="onTap">components/testCpmt/testCpmt.wxml</text>
