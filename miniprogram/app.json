@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/demo/demo",
+    "pages/test/test",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
@@ -17,11 +18,12 @@
     "pages/edit-user-info/edit-user-info"
   ],
   "window": {
-    "backgroundColor": "black",
+    "backgroundColor": "#eeeeee",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "群打卡",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2"

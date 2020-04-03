@@ -4,9 +4,11 @@
 }
 
 .header {
+  display: flex;
+  align-items: center;
   padding: 20rpx;
+  width: 100%;
 }
-
 .user-avatar {
   /* display: block; */
   overflow: hidden;

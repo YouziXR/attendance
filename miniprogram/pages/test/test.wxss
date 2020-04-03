@@ -1,0 +1,37 @@
+.container {
+  height: 100%;
+  padding: 15rpx;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  /* padding: 20rpx; */
+  width: 100%;
+  /* display: flex; */
+  /* align-items: center; */
+  box-sizing: border-box;
+  border-radius: 12rpx;
+  background-color: white;
+  /* position: relative; */
+  margin-bottom: 25rpx;
+  border: 1px solid;
+}
+.header view {
+  border: 1px solid;
+  height: 100rpx;
+  width: 100rpx;
+}
+.user-avatar {
+  /* display: block; */
+  /* overflow: hidden; */
+  width: 160rpx;
+  height: 160rpx;
+  margin-left: 20rpx;
+  border-radius: 50%;
+  /* border: 2px solid #eee; */
+  /* box-shadow: 5rpx 5rpx 5rpx #666; */
+}
+.user-nick-name {
+  margin-left: 40rpx;
+}

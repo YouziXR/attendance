@@ -10,10 +10,10 @@
 }
 .basic-card {
   width: 100%;
-  display: flex;
+  /* display: flex; */
+  /* align-items: center; */
   box-sizing: border-box;
   border-radius: 12rpx;
-  align-items: center;
   background-color: white;
   position: relative;
   margin-bottom: 25rpx;
