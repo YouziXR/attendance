@@ -35,20 +35,58 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
+    const db = wx.cloud.database();
+    const _ = db.command;
+    // console.log(db.collection('user_info').doc('dc65fe3e5e87072800356f1672c36916'));
+    /* db.collection('user_info')
+      .add({
+        data: {
+          // _openid: '{openid}',
+          nickname: '?'
+        }
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(e => {
+        console.log(e);
+      }); */
+    db.collection('user_info')
+      .where({
+        _openid: '{openid}'
+        // nickname: ''
+      })
+      .get()
+      .then(res => {
+        console.log(res);
+      });
     // 查看是否授权
-    wx.getSetting({
+    /* wx.getSetting({
       success(res) {
         if (res.authSetting['scope.userInfo']) {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
           wx.getUserInfo({
-            success: function(res) {
-              console.log(res.userInfo);
+            success: function (res) {
+              // console.log(res.userInfo);
             }
           });
         }
       }
-    });
+    }); */
+    wx.getSetting()
+      .then(res => {
+        console.log(res);
+        if (res.authSetting['scope.userInfo']) {
+          return wx.getUserInfo();
+        }
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(error => {
+        console.log(error);
+      });
     this.getSpecialList();
   },
   bindGetUserInfo(e) {
@@ -58,7 +96,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
     this.setData({
       testInnerText: 'wtf?'
     });
@@ -67,30 +105,30 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {},
+  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {},
+  onHide: function () {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {},
+  onUnload: function () {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {},
+  onPullDownRefresh: function () {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {},
+  onReachBottom: function () {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {}
+  onShareAppMessage: function () {}
 });
