@@ -6,7 +6,9 @@ Page({
   data: {
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     testInnerText: '',
-    activitySpecialList: []
+    activitySpecialList: [],
+    userAvatarSrc: '',
+    userNickName: ''
   },
   onTestCpmtTab(val) {
     console.log(val);
@@ -36,6 +38,53 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.getStorage({
+      key: 'key',
+      success: result => {},
+      fail: () => {},
+      complete: () => {}
+    });
+
+    wx.getStorage({
+      key: 'userInfo',
+      success: res => {
+        console.log(res);
+        const userInfo = res.data;
+        this.setData({
+          userAvatarSrc: userInfo.avatarUrl,
+          userNickName: userInfo.nickName
+        });
+      },
+      fail: () => {
+        wx.getSetting()
+          .then(res => {
+            console.log(res);
+            if (res.authSetting['scope.userInfo']) {
+              return wx.getUserInfo();
+            }
+          })
+          .then(res => {
+            console.log(res);
+            const userInfo = res.userInfo;
+            this.setData({
+              userAvatarSrc: userInfo.avatarUrl,
+              userNickName: userInfo.nickName
+            });
+            return wx.setStorage({
+              key: 'userInfo',
+              data: userInfo
+            });
+          })
+          .then(res => {})
+          .catch(error => {
+            wx.showToast({
+              title: error,
+              icon: 'none'
+            });
+            console.log(error);
+          });
+      }
+    });
     const db = wx.cloud.database();
     const _ = db.command;
     // console.log(db.collection('user_info').doc('dc65fe3e5e87072800356f1672c36916'));
@@ -74,19 +123,7 @@ Page({
         }
       }
     }); */
-    wx.getSetting()
-      .then(res => {
-        console.log(res);
-        if (res.authSetting['scope.userInfo']) {
-          return wx.getUserInfo();
-        }
-      })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+
     this.getSpecialList();
   },
   bindGetUserInfo(e) {

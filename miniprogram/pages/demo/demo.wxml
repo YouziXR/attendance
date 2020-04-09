@@ -11,11 +11,11 @@
   </view> -->
   <view class="basic-card">
     <view class="header">
-      <view class="user-avatar">
-        <open-data type="userAvatarUrl"></open-data>
-      </view>
+      <!-- <open-data type="userAvatarUrl"></open-data> -->
+      <image class="user-avatar" src="{{userAvatarSrc}}" mode="widthFix" lazy-load="false" binderror="" bindload="" />
       <view class="user-nick-name">
-        <open-data type="userNickName"></open-data>
+        <!-- <open-data type="userNickName"></open-data> -->
+        <text class="" selectable="false" space="false" decode="false">{{userNickName}}</text>
       </view>
       <!-- <view> -->
       <navigator url="../edit-user-info/edit-user-info" hover-class="hover-edit-info" class="edit-info">
