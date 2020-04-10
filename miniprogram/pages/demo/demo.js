@@ -1,3 +1,11 @@
+/*
+ * @Description:
+ * @Author: youzi
+ * @Date: 2020-04-10 10:25:25
+ * @LastEditors: youzi
+ * @LastEditTime: 2020-04-10 18:22:12
+ * @todo:
+ */
 // miniprogram/pages/demo/demo.js
 Page({
   /**
@@ -7,12 +15,18 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     testInnerText: '',
     activitySpecialList: [],
-    userAvatarSrc: '',
     userNickName: ''
   },
   onTestCpmtTab(val) {
     console.log(val);
   },
+  /**
+   * @param {null} null
+   * @return {null} null
+   * @desc: 获取精品打卡列表
+   * @author: youzi
+   * @Date: 2020-04-10 17:14:55
+   */
   getSpecialList() {
     var reqTask = wx.request({
       url: 'https://mockapi.eolinker.com/IijxmBq899bd1253246ccd95aaae99e8be43da84b7f788a/specialList',
@@ -35,95 +49,120 @@ Page({
     });
   },
   /**
-   * 生命周期函数--监听页面加载
+   * @param {object} userInfo 用户信息对象
+   * @return {null}
+   * @logic: 错误处理在函数内部
+   * @author: youzi
+   * @Date: 2020-04-10 16:53:49
    */
-  onLoad: function (options) {
-    wx.getStorage({
-      key: 'key',
-      success: result => {},
-      fail: () => {},
-      complete: () => {}
-    });
-
+  addUserInfo(userInfo) {
+    const db = wx.cloud.database();
+    const _ = db.command;
+    db.collection('user_info')
+      .add({
+        data: {
+          ...userInfo
+        }
+      })
+      .then(res => {})
+      .catch(e => {
+        console.log(e);
+        wx.showToast({
+          title: '新增用户信息失败',
+          icon: 'none'
+        });
+      });
+  },
+  /**
+   * @param {null} null
+   * @return {null}
+   * @logic: 优先访问本地存储，如果没有取到值，再访问数据库，如果还是没有取到值，最后访问getUserInfo接口
+   * @author: youzi
+   * @Date: 2020-04-10 15:58:00
+   */
+  ownGetUserInfo() {
+    const db = wx.cloud.database();
+    const _ = db.command;
     wx.getStorage({
       key: 'userInfo',
       success: res => {
         console.log(res);
         const userInfo = res.data;
         this.setData({
-          userAvatarSrc: userInfo.avatarUrl,
           userNickName: userInfo.nickName
         });
       },
       fail: () => {
-        wx.getSetting()
+        db.collection('user_info')
+          .where({
+            _openid: '{openid}'
+            // nickname: ''
+          })
+          .get()
           .then(res => {
             console.log(res);
-            if (res.authSetting['scope.userInfo']) {
-              return wx.getUserInfo();
+            if (!res.data.length) {
+              wx.getSetting()
+                .then(res => {
+                  console.log(res);
+                  if (res.authSetting['scope.userInfo']) {
+                    return wx.getUserInfo();
+                  }
+                })
+                .then(res => {
+                  console.log(res);
+                  const userInfo = res.userInfo;
+                  this.setData({
+                    userNickName: userInfo.nickName
+                  });
+                  return new Promise((resolve, reject) => {
+                    wx.setStorage({
+                      key: 'userInfo',
+                      data: { nickName: userInfo.nickName }
+                    })
+                      .then(() => resolve(userInfo))
+                      .catch(e => reject(e));
+                  });
+                  /* return wx.setStorage({
+                    key: 'userInfo',
+                    data: userInfo
+                  }); */
+                })
+                .then(res => {
+                  console.log(res);
+                  this.addUserInfo({ nickName: res.nickName });
+                })
+                .catch(error => {
+                  wx.showToast({
+                    title: error,
+                    icon: 'none'
+                  });
+                  console.log(error);
+                });
+            } else {
+              let { nickName } = res.data[0];
+              wx.setStorage({
+                key: 'userInfo',
+                data: { nickName },
+                success: result => {
+                  this.setData({
+                    userNickName: nickName
+                  });
+                  // res.data;
+                },
+                fail: () => {},
+                complete: () => {}
+              });
             }
-          })
-          .then(res => {
-            console.log(res);
-            const userInfo = res.userInfo;
-            this.setData({
-              userAvatarSrc: userInfo.avatarUrl,
-              userNickName: userInfo.nickName
-            });
-            return wx.setStorage({
-              key: 'userInfo',
-              data: userInfo
-            });
-          })
-          .then(res => {})
-          .catch(error => {
-            wx.showToast({
-              title: error,
-              icon: 'none'
-            });
-            console.log(error);
           });
       }
     });
-    const db = wx.cloud.database();
-    const _ = db.command;
-    // console.log(db.collection('user_info').doc('dc65fe3e5e87072800356f1672c36916'));
-    /* db.collection('user_info')
-      .add({
-        data: {
-          // _openid: '{openid}',
-          nickname: '?'
-        }
-      })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(e => {
-        console.log(e);
-      }); */
-    db.collection('user_info')
-      .where({
-        _openid: '{openid}'
-        // nickname: ''
-      })
-      .get()
-      .then(res => {
-        console.log(res);
-      });
-    // 查看是否授权
-    /* wx.getSetting({
-      success(res) {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.getUserInfo({
-            success: function (res) {
-              // console.log(res.userInfo);
-            }
-          });
-        }
-      }
-    }); */
-
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.ownGetUserInfo();
     this.getSpecialList();
   },
   bindGetUserInfo(e) {

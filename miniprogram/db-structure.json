@@ -1,0 +1,27 @@
+{
+  "user_info": {
+    "_id": "auto generate",
+    "wx_id": "backend get",
+    "nickname": "frontend get",
+    "_openid": "auto generate"
+  },
+  "clock_in_activities": {
+    "_id": "auto generate",
+    "creater": "_openid auto generate",
+    "name": "string user set",
+    "description": "string user set",
+    "type": "once or daily",
+    "attributes": [
+      {
+        "name": "string user set",
+        "type": "string user set, contains {text, img}",
+        "required": "bool, true: required, false: not required"
+      }
+    ]
+  },
+  "user_clock_in": {
+    "id": "auto generate",
+    "activity_id": "",
+    "_openid": "auto generate",
+  }
+}

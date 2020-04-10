@@ -7,18 +7,12 @@ Page({
     formData: {},
     rules: [
       {
-        name: 'nickname',
-        rules: [
-          { required: true, message: '昵称必填' }
-          /* {
-            validator(rule, value, param, models) {
-              console.log(rule, value, param, models);
-              if (Number.parseInt(value) > 10) {
-                return `${value} is greater than 10`;
-              }
-            }
-          } */
-        ]
+        name: 'nickName',
+        rules: [{ required: true, message: '昵称必填' }]
+      },
+      {
+        name: 'wxid',
+        rules: {}
       }
     ],
     showValidateDlg: false,
@@ -31,6 +25,7 @@ Page({
     });
   },
   submitForm() {
+    let that = this;
     this.selectComponent('#form').validate((valid, errors) => {
       console.log('valid', valid, errors);
       if (!valid) {
@@ -42,6 +37,27 @@ Page({
           });
         }
       } else {
+        const formData = this.data.formData;
+        console.log(formData);
+
+        const db = wx.cloud.database();
+        const _ = db.command;
+        db.collection
+          .where({
+            _openid: '{openid}'
+          })
+          .update({
+            data: {
+              nickName: formData.nickName,
+              wxid: formData.wxid
+            }
+          })
+          .then(res => {
+            console.log(res);
+          })
+          .catch(e => {
+            console.log(e);
+          });
         wx.showToast({
           title: '校验通过'
         });
@@ -57,42 +73,79 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {},
+  onLoad: function (options) {
+    const db = wx.cloud.database();
+    const _ = db.command;
+    // console.log(db.collection('user_info').doc('dc65fe3e5e87072800356f1672c36916'));
+    /* db.collection('user_info')
+      .add({
+        data: {
+          // _openid: '{openid}',
+          nickname: '?'
+        }
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(e => {
+        console.log(e);
+      }); */
+    db.collection('user_info')
+      .where({
+        _openid: '{openid}'
+        // nickname: ''
+      })
+      .get()
+      .then(res => {
+        console.log(res);
+      });
+    wx.getStorage({
+      key: 'userInfo',
+      success: result => {
+        let nickName = result.data.nickName;
+        this.setData({
+          ['formData.nickName']: nickName
+        });
+      },
+      fail: () => {},
+      complete: () => {}
+    });
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {},
+  onReady: function () {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {},
+  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {},
+  onHide: function () {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {},
+  onUnload: function () {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {},
+  onPullDownRefresh: function () {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {},
+  onReachBottom: function () {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {}
+  onShareAppMessage: function () {}
 });
 
 /* Component({

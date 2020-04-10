@@ -11,8 +11,10 @@
   </view> -->
   <view class="basic-card">
     <view class="header">
-      <!-- <open-data type="userAvatarUrl"></open-data> -->
-      <image class="user-avatar" src="{{userAvatarSrc}}" mode="widthFix" lazy-load="false" binderror="" bindload="" />
+      <view class="user-avatar">
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+      <!-- <image class="user-avatar" src="{{userAvatarSrc}}" mode="widthFix" lazy-load="false" binderror="" bindload="" /> -->
       <view class="user-nick-name">
         <!-- <open-data type="userNickName"></open-data> -->
         <text class="" selectable="false" space="false" decode="false">{{userNickName}}</text>

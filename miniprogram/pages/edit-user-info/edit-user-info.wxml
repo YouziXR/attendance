@@ -1,10 +1,14 @@
 <mp-form id="form" rules="{{rules}}" models="{{formData}}">
   <mp-cells title="编辑资料">
-    <mp-cell prop="nickname" title="昵称" show-error>
-      <input type="text" data-field="nickname" class="weui-input" placeholder="请输入昵称" bindinput="formInputChange" />
+    <mp-cell prop="nickName" show-error>
+      <view slot="title" class="weui-label">
+        昵称
+        <text style="color:red">*</text>
+      </view>
+      <input type="text" data-field="nickName" class="weui-input" placeholder="请输入昵称" bindinput="formInputChange" />
     </mp-cell>
-    <mp-cell prop="wxID" title="微信号">
-      <input bindinput="formInputChange" data-field="wxID" class="weui-input" placeholder="选填" />
+    <mp-cell prop="wxid" title="微信号">
+      <input type="text" bindinput="formInputChange" data-field="wxid" class="weui-input" placeholder="选填" />
       <!-- <view slot="footer" class="weui-vcode-btn">获取验证码</view> -->
     </mp-cell>
     <!-- <mp-cell prop="date" title="日期" ext-class="">
