@@ -24,6 +24,45 @@ Page({
       showValidateDlg: false
     });
   },
+  /**
+   * @param {object} userInfo 用户信息
+   * @return: null
+   * @desc: 调用云函数更新用户信息
+   * @author: youzi
+   * @Date: 2020-04-11 18:58:14
+   */
+  updateUserInfo(userInfo) {
+    wx.cloud
+      .callFunction({
+        name: 'update-user-info',
+        data: { ...userInfo }
+      })
+      .then(res => {
+        console.log(res);
+        wx.setStorage({
+          key: 'userInfo',
+          data: { ...userInfo },
+          success: result => {
+            wx.showToast({
+              title: '更新个人信息成功'
+            });
+            wx.navigateBack({
+              delta: 1,
+              fail: e => {
+                console.error(e);
+              }
+            });
+          }
+        });
+      })
+      .catch(e => {
+        console.log(e);
+        wx.showToast({
+          title: '更新个人信息失败，请重试',
+          icon: 'none'
+        });
+      });
+  },
   submitForm() {
     let that = this;
     this.selectComponent('#form').validate((valid, errors) => {
@@ -39,28 +78,10 @@ Page({
       } else {
         const formData = this.data.formData;
         console.log(formData);
-
-        const db = wx.cloud.database();
-        const _ = db.command;
-        db.collection
-          .where({
-            _openid: '{openid}'
-          })
-          .update({
-            data: {
-              nickName: formData.nickName,
-              wxid: formData.wxid
-            }
-          })
-          .then(res => {
-            console.log(res);
-          })
-          .catch(e => {
-            console.log(e);
-          });
-        wx.showToast({
+        this.updateUserInfo(formData);
+        /* wx.showToast({
           title: '校验通过'
-        });
+        }); */
       }
     });
   },
@@ -74,37 +95,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const db = wx.cloud.database();
+    /* const db = wx.cloud.database();
     const _ = db.command;
-    // console.log(db.collection('user_info').doc('dc65fe3e5e87072800356f1672c36916'));
-    /* db.collection('user_info')
-      .add({
-        data: {
-          // _openid: '{openid}',
-          nickname: '?'
-        }
-      })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(e => {
-        console.log(e);
-      }); */
     db.collection('user_info')
       .where({
         _openid: '{openid}'
-        // nickname: ''
       })
       .get()
       .then(res => {
         console.log(res);
-      });
+      }); */
     wx.getStorage({
       key: 'userInfo',
       success: result => {
-        let nickName = result.data.nickName;
+        // let { nickName, wxid } = result.data;
         this.setData({
-          ['formData.nickName']: nickName
+          // ['formData.nickName']: nickName,
+          // ['formData.wxid']: wxid
+          formData: result.data
         });
       },
       fail: () => {},

@@ -5,10 +5,10 @@
         昵称
         <text style="color:red">*</text>
       </view>
-      <input type="text" data-field="nickName" class="weui-input" placeholder="请输入昵称" bindinput="formInputChange" />
+      <input type="text" data-field="nickName" class="weui-input" placeholder="请输入昵称" bindinput="formInputChange" value="{{formData.nickName}}" />
     </mp-cell>
     <mp-cell prop="wxid" title="微信号">
-      <input type="text" bindinput="formInputChange" data-field="wxid" class="weui-input" placeholder="选填" />
+      <input type="text" bindinput="formInputChange" data-field="wxid" class="weui-input" placeholder="选填" value="{{formData.wxid}}" />
       <!-- <view slot="footer" class="weui-vcode-btn">获取验证码</view> -->
     </mp-cell>
     <!-- <mp-cell prop="date" title="日期" ext-class="">
