@@ -3,7 +3,7 @@
  * @Author: youzi
  * @Date: 2020-04-10 10:25:25
  * @LastEditors: youzi
- * @LastEditTime: 2020-04-10 18:22:12
+ * @LastEditTime: 2020-04-12 22:19:31
  * @todo:
  */
 // miniprogram/pages/demo/demo.js
@@ -162,7 +162,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.ownGetUserInfo();
     this.getSpecialList();
   },
   bindGetUserInfo(e) {
@@ -181,7 +180,9 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () {
+    this.ownGetUserInfo();
+  },
 
   /**
    * 生命周期函数--监听页面隐藏
