@@ -3,13 +3,17 @@
     "_id": "auto generate",
     "wx_id": "backend get",
     "nickname": "frontend get",
-    "_openid": "auto generate"
+    "_openid": "auto generate",
+    "create_time": "date time",
+    "update_time": "date time"
   },
   "clock_in_activities": {
     "_id": "auto generate",
     "creater": "_openid auto generate",
     "name": "string user set",
     "description": "string user set",
+    "create_time": "date time",
+    "update_time": "date time",
     "type": "once or daily",
     "attributes": [
       {
@@ -23,5 +27,7 @@
     "id": "auto generate",
     "activity_id": "",
     "_openid": "auto generate",
+    "create_time": "date time",
+    "update_time": "date time"
   }
 }
