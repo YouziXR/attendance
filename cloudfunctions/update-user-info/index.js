@@ -3,7 +3,7 @@
  * @Author: youzi
  * @Date: 2020-04-11 18:40:34
  * @LastEditors: youzi
- * @LastEditTime: 2020-04-12 22:05:21
+ * @LastEditTime: 2020-04-17 16:40:15
  */
 // 初始化 cloud
 const cloud = require('wx-server-sdk');
@@ -29,7 +29,8 @@ exports.main = async (event, context) => {
       .update({
         data: {
           nickName: event.nickName,
-          wxid: event.wxid
+          wxid: event.wxid,
+          update_time: db.serverDate()
         }
       });
   } catch (e) {

@@ -1,10 +1,9 @@
 /*
- * @Description:
+ * @Description: 打卡首页
  * @Author: youzi
  * @Date: 2020-04-10 10:25:25
  * @LastEditors: youzi
- * @LastEditTime: 2020-04-12 22:19:31
- * @todo:
+ * @LastEditTime: 2020-04-17 16:37:30
  */
 // miniprogram/pages/demo/demo.js
 Page({
@@ -49,6 +48,7 @@ Page({
     });
   },
   /**
+   * @desc: 新增用户，直接调用云数据库的add方法
    * @param {object} userInfo 用户信息对象
    * @return {null}
    * @logic: 错误处理在函数内部
@@ -61,7 +61,9 @@ Page({
     db.collection('user_info')
       .add({
         data: {
-          ...userInfo
+          ...userInfo,
+          create_time: db.serverDate(),
+          update_time: db.serverDate()
         }
       })
       .then(res => {})
