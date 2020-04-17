@@ -15,7 +15,8 @@
     "pages/openapi/cloudid/cloudid",
     "pages/im/im",
     "pages/im/room/room",
-    "pages/edit-user-info/edit-user-info"
+    "pages/edit-user-info/edit-user-info",
+    "pages/participate-clock-in/participate-clock-in"
   ],
   "window": {
     "backgroundColor": "#eeeeee",

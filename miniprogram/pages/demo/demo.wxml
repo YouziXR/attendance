@@ -29,7 +29,7 @@
   <basic-card class="basic-card" cardTitle="我的打卡">
     <view class="card-content" slot="content">
       <navi-img navi-url="../index/index" img-url="/images/icons/history-add.png" hintMsg="创建的打卡" class="inner-card"></navi-img>
-      <navi-img navi-url="../im/im" img-url="/images/icons/history-take-in.png" hintMsg="参与的打卡" class="inner-card"></navi-img>
+      <navi-img navi-url="/pages/participate-clock-in/participate-clock-in" img-url="/images/icons/history-take-in.png" hintMsg="参与的打卡" class="inner-card"></navi-img>
       <!-- <navi-img navi-url="../im/im" img-url="/images/icons/history-take-in.png" hintMsg="参与的打卡" class="inner-card"></navi-img> -->
     </view>
   </basic-card>
