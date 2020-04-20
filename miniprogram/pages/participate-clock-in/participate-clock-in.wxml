@@ -1,2 +1,1 @@
-<!--miniprogram/pages/participate-clock-in/participate-clock-in.wxml-->
-<text>miniprogram/pages/participate-clock-in/participate-clock-in.wxml</text>
+<nav-list-card avatar-url="{{avatarUrl}}" title="{{title}}" time-start="{{timeStart}}" status="{{status}}"></nav-list-card>

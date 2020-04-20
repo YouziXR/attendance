@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "nav-list-card": "../../components/nav-list-card/nav-list-card"
+  }
 }

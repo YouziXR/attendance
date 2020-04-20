@@ -1,0 +1,10 @@
+<view class="nav-card-container">
+  <navigator class="nav-card-navigator" target="" url="" hover-class="" open-type="navigate">
+    <view class="nav-card-content">
+      <image class="" src="{{avatarUrl}}" mode="widthFix" lazy-load="false" binderror="" bindload="" />
+      <text class="nav-card__title">{{title}}</text>
+      <text class="nav-card__time">{{timeStart}}</text>
+      <text class="nav-card__status">{{status}}</text>
+    </view>
+  </navigator>
+</view>
