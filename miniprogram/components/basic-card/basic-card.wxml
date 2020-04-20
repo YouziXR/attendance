@@ -1,6 +1,6 @@
 <!-- components/basic-card/basic-card.wxml -->
 <view class="complex-card">
-  <view class="card-title">
+  <view class="card-title" wx:if="{{cardTitle}}">
     <text class="title">{{cardTitle}}</text>
     <slot name="cardExtraOpt"></slot>
   </view>

@@ -3,7 +3,7 @@
  * @Author: youzi
  * @Date: 2020-04-10 10:25:25
  * @LastEditors: youzi
- * @LastEditTime: 2020-04-17 16:37:30
+ * @LastEditTime: 2020-04-20 20:03:01
  */
 // miniprogram/pages/demo/demo.js
 Page({
@@ -120,7 +120,10 @@ Page({
                   return new Promise((resolve, reject) => {
                     wx.setStorage({
                       key: 'userInfo',
-                      data: { nickName: userInfo.nickName }
+                      data: {
+                        nickName: userInfo.nickName,
+                        avatarUrl: userInfo.avatarUrl
+                      }
                     })
                       .then(() => resolve(userInfo))
                       .catch(e => reject(e));
@@ -132,7 +135,10 @@ Page({
                 })
                 .then(res => {
                   console.log(res);
-                  this.addUserInfo({ nickName: res.nickName });
+                  this.addUserInfo({
+                    nickName: res.nickName,
+                    avatarUrl: res.avatarUrl
+                  });
                 })
                 .catch(error => {
                   wx.showToast({
@@ -142,10 +148,10 @@ Page({
                   console.log(error);
                 });
             } else {
-              let { nickName } = res.data[0];
+              let { nickName, avatarUrl } = res.data[0];
               wx.setStorage({
                 key: 'userInfo',
-                data: { nickName },
+                data: { nickName, avatarUrl },
                 success: result => {
                   this.setData({
                     userNickName: nickName
