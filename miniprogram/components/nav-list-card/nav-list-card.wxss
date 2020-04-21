@@ -1,1 +1,57 @@
-/* components/nav-list-card/nav-list-card.wxss */
+/* 组件容器 */
+.nav-card-container {
+  box-sizing: border-box;
+  padding: 20rpx;
+  background-color: #fff;
+  border: 1px solid #eee;
+}
+/* 内容容器 */
+.nav-card-content {
+  display: flex;
+}
+/* 用户头像 */
+.user-avatar {
+  height: 140rpx;
+  width: 140rpx;
+  margin-left: 20rpx;
+}
+
+/* 描述信息 */
+.nav-card__desc {
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 时间信息 */
+.nav-card__time {
+  font-size: 80%;
+  color: #878787;
+}
+
+/* 状态栏的容器 */
+.nav-card__status-container {
+  display: flex;
+  flex-direction: row;
+  font-size: 75%;
+  color: #fff;
+}
+.nav-card__status-container text {
+  padding: 0 10rpx;
+  margin-right: 10rpx;
+  border-radius: 10rpx;
+}
+/* 打卡是否结束 */
+.nav-card__status-time {
+  background-color: cornflowerblue;
+}
+.nav-card__status-time__not {
+  background-color: #cccccc;
+}
+/* 是否打了卡 */
+.nav-card__status-clockin {
+  background-color: #1fba21;
+}
+.nav-card__status-clockin__not {
+  background-color: #cccccc;
+}
