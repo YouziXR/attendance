@@ -1,1 +1,3 @@
-<nav-list-card avatar-url="{{avatarUrl}}" title="{{title}}" time-start="{{timeStart}}" status="{{status}}"></nav-list-card>
+<view class="container">
+  <nav-list-card activity-info="{{activityInfo}}" style="width:100%"></nav-list-card>
+</view>
