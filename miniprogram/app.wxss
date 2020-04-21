@@ -30,6 +30,18 @@
   box-sizing: border-box;
   width: 50%;
 }
+
+/* 用户头像 */
+.user-avatar {
+  /* display: block; */
+  overflow: hidden;
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  /* border: 2px solid #eee; */
+  /* box-shadow: 5rpx 5rpx 5rpx #666; */
+}
+
 button {
   background: initial;
 }
