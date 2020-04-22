@@ -97,7 +97,7 @@ Page({
   onLoad: function (options) {
     /* const db = wx.cloud.database();
     const _ = db.command;
-    db.collection('user_info')
+    db.collection('userInfo')
       .where({
         _openid: '{openid}'
       })

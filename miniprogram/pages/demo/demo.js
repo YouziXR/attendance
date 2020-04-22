@@ -3,7 +3,7 @@
  * @Author: youzi
  * @Date: 2020-04-10 10:25:25
  * @LastEditors: youzi
- * @LastEditTime: 2020-04-20 20:03:01
+ * @LastEditTime: 2020-04-22 22:41:18
  */
 // miniprogram/pages/demo/demo.js
 Page({
@@ -12,7 +12,6 @@ Page({
    */
   data: {
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    testInnerText: '',
     activitySpecialList: [],
     userNickName: ''
   },
@@ -58,12 +57,12 @@ Page({
   addUserInfo(userInfo) {
     const db = wx.cloud.database();
     const _ = db.command;
-    db.collection('user_info')
+    db.collection('userInfo')
       .add({
         data: {
           ...userInfo,
-          create_time: db.serverDate(),
-          update_time: db.serverDate()
+          createTime: db.serverDate(),
+          updateTime: db.serverDate()
         }
       })
       .then(res => {})
@@ -95,7 +94,7 @@ Page({
         });
       },
       fail: () => {
-        db.collection('user_info')
+        db.collection('userInfo')
           .where({
             _openid: '{openid}'
             // nickname: ''
@@ -169,9 +168,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    this.getSpecialList();
-  },
+  onLoad: function (options) {},
   bindGetUserInfo(e) {
     console.log(e.detail.userInfo);
   },
@@ -180,9 +177,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.setData({
-      testInnerText: 'wtf?'
-    });
+    this.getSpecialList();
   },
 
   /**
@@ -205,7 +200,10 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () {
+    this.onReady();
+    this.onShow();
+  },
 
   /**
    * 页面上拉触底事件的处理函数
