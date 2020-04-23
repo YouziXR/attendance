@@ -3,7 +3,7 @@
  * @Author: youzi
  * @Date: 2020-04-21 16:57:27
  * @LastEditors: youzi
- * @LastEditTime: 2020-04-22 23:02:26
+ * @LastEditTime: 2020-04-23 12:01:13
  */
 
 // 云函数入口文件
@@ -39,6 +39,7 @@ exports.main = async (event, context) => {
           const el = clockInList[i];
           let activityWithUser = await readClockInActivity(el.activityId);
           activityWithUser.clockInTime = el.clockInTime;
+          activityWithUser.status = el.status;
           console.warn('main', activityWithUser);
           result.push(activityWithUser);
         }
