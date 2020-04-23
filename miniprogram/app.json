@@ -16,7 +16,8 @@
     "pages/im/im",
     "pages/im/room/room",
     "pages/edit-user-info/edit-user-info",
-    "pages/participate-clock-in/participate-clock-in"
+    "pages/participate-clock-in/participate-clock-in",
+    "pages/clock-in-detail/clock-in-detail"
   ],
   "window": {
     "backgroundColor": "#eeeeee",
