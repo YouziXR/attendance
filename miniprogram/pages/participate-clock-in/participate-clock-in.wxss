@@ -1,1 +1,9 @@
 /* miniprogram/pages/participate-clock-in/participate-clock-in.wxss */
+/* nav list 容器 */
+.container__nav-list {
+  width: 100%;
+}
+.loading {
+  width: 120rpx;
+  height: 120rpx;
+}

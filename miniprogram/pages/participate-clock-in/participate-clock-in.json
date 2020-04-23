@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "nav-list-card": "../../components/nav-list-card/nav-list-card"
+    "nav-list-card": "../../components/nav-list-card/nav-list-card",
+    "mp-loading": "../miniprogram_npm/weui-miniprogram/loading/loading"
   }
 }

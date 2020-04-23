@@ -4,9 +4,44 @@ Page({
    * 页面的初始数据
    */
   data: {
-    activityInfo: {}
+    // 活动信息，用于列表渲染，后端接口获取
+    activityInfo: [],
+    // loading隐藏时是否显示动画
+    animated: true,
+    // loading的显示与隐藏
+    show: true
   },
-
+  onTapTest(e) {
+    console.warn('onTapTest', e);
+  },
+  /**
+   * @desc: 调用云函数获取打卡列表并渲染
+   * @param {null} null
+   * @return: null
+   * @apiData: { nickName, avatarUrl, activityTime, description, name, type, clockInTime }
+   * @author: youzi
+   * @Date: 2020-04-23 10:03:34
+   */
+  getClockInActivities() {
+    wx.cloud
+      .callFunction({
+        name: 'read-user-clock-in'
+      })
+      .then(res => {
+        console.log('%c read-user-clock-in', 'color: blue', res);
+        this.setData({
+          activityInfo: res.result
+        });
+        setTimeout(() => {
+          this.setData({
+            show: false
+          });
+        }, 200);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -16,27 +51,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    wx.cloud
-      .callFunction({
-        name: 'read-user-clock-in'
-      })
-      .then(res => {
-        console.log('%c read-user-clock-in', 'color: blue', res);
-      })
-      .catch(err => {
-        console.error(err);
-      });
-    const d = new Date().getTime();
-    this.setData({
-      activityInfo: {
-        url:
-          'https://wx.qlogo.cn/mmopen/vi_32/reRVI0fwEMx4A3AgOAegicXlib635ic0v71HKCShUldKvkgMQdDibzlHicXicMTk2T8P23ibd3ko6Cia51Pg8sII18sA1g/132',
-        title: '1',
-        startTime: d,
-        endTime: new Date(d + 60 * 60 * 1000).getTime(),
-        status: true
-      }
-    });
+    this.getClockInActivities();
   },
 
   /**
@@ -57,7 +72,9 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () {
+    this.onReady();
+  },
 
   /**
    * 页面上拉触底事件的处理函数

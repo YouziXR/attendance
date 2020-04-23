@@ -1,3 +1,6 @@
 <view class="container">
-  <nav-list-card activity-info="{{activityInfo}}" style="width:100%"></nav-list-card>
+  <mp-loading duration="{{500}}" ext-class="loading" type="dot-gray" show="{{show}}" animated="{{animated}}"></mp-loading>
+  <view wx:if="{{!show}}" class="container__nav-list" bind:myevent="onTapTest">
+    <nav-list-card wx:for="{{activityInfo}}" wx:key="index" activity-info="{{item}}" style="width:100%"></nav-list-card>
+  </view>
 </view>
