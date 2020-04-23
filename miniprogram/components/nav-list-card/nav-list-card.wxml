@@ -1,17 +1,15 @@
-<view class="nav-card-container">
-  <navigator class="nav-card-navigator" target="" url="" hover-class="" open-type="navigate">
-    <view class="nav-card-content">
-      <image class="user-avatar" src="{{url}}" mode="widthFix" lazy-load="false" binderror="" bindload="" />
-      <view class="nav-card__desc">
-        <text class="nav-card__title">{{title}}</text>
-        <text class="nav-card__time">{{startTime}}</text>
-        <view class="nav-card__status-container">
-          <text class="{{activityStatus === '进行中' ? 'nav-card__status-time' : 'nav-card__status-time__not'}}">{{activityStatus}}
-          </text>
-          <text class="{{status ? 'nav-card__status-clockin' : 'nav-card__status-clockin__not'}}">{{status ? '已打卡' : '未打卡'}}
-          </text>
-        </view>
+<view class="nav-card-navigator" bindtap="onTapNav">
+  <view class="nav-card-content">
+    <image class="user-avatar" src="{{avatarUrl}}" mode="widthFix" lazy-load="false" binderror="" bindload="" />
+    <view class="nav-card__desc">
+      <text class="nav-card__title">{{name}}</text>
+      <text class="nav-card__time">{{activityTime.startTime}}</text>
+      <view class="nav-card__status-container">
+        <text class="{{activityStatus === '进行中' ? 'nav-card__status-time' : 'nav-card__status-time__not'}}">{{activityStatus}}
+        </text>
+        <text class="{{status ? 'nav-card__status-clockin' : 'nav-card__status-clockin__not'}}">{{status ? '已打卡' : '未打卡'}}
+        </text>
       </view>
     </view>
-  </navigator>
+  </view>
 </view>

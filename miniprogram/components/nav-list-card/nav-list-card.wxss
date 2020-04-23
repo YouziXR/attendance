@@ -1,5 +1,5 @@
 /* 组件容器 */
-.nav-card-container {
+.nav-card-navigator {
   box-sizing: border-box;
   padding: 20rpx;
   background-color: #fff;
