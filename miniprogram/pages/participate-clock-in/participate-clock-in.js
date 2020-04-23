@@ -9,10 +9,30 @@ Page({
     // loading隐藏时是否显示动画
     animated: true,
     // loading的显示与隐藏
-    show: true
+    show: true,
+    // 跳转到打卡详情页面
+    navUrl: '../clock-in-detail/clock-in-detail'
   },
-  onTapTest(e) {
-    console.warn('onTapTest', e);
+  /**
+   * @desc: 跳转到下一界面，由组件触发，事件代理冒泡捕获
+   * @param {object} e 事件参数，e.detail
+   * @return: null
+   * @author: youzi
+   * @Date: 2020-04-23 20:04:47
+   */
+  onTapNavigate(e) {
+    console.warn('onTapNavigate', e);
+    let info = e.detail;
+    wx.navigateTo({
+      url: this.data.navUrl,
+      success: res => {
+        res.eventChannel.emit('getInfoFromListPage', info);
+      },
+      fail: e => {
+        console.error(e);
+      },
+      complete: () => {}
+    });
   },
   /**
    * @desc: 调用云函数获取打卡列表并渲染

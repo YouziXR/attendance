@@ -17,10 +17,7 @@ Component({
   /**
    * 组件的初始数据
    */
-  data: {
-    // 跳转到打卡详情页面
-    navUrl: '../clock-in-detail/clock-in-detail'
-  },
+  data: {},
 
   /**
    * 组件的方法列表
@@ -28,15 +25,7 @@ Component({
   methods: {
     onTapNav() {
       // console.warn('onTapNav', this.data.activityInfo);
-      this.triggerEvent('myevent', this.data.activityInfo, { bubbles: true });
-      /*  wx.navigateTo({
-        url: this.data.navUrl,
-        success: res => {
-          res.eventChannel.emit('getInfoFromListPage', this.data.activityInfo);
-        },
-        fail: () => {},
-        complete: () => {}
-      }); */
+      this.triggerEvent('navigateevent', this.data.activityInfo, { bubbles: true });
     }
   },
   observers: {
