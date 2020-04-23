@@ -3,7 +3,7 @@
  * @Author: youzi
  * @Date: 2020-04-11 18:40:34
  * @LastEditors: youzi
- * @LastEditTime: 2020-04-17 16:40:15
+ * @LastEditTime: 2020-04-22 17:26:30
  */
 // 初始化 cloud
 const cloud = require('wx-server-sdk');
@@ -21,7 +21,7 @@ exports.main = async (event, context) => {
     const wxContext = cloud.getWXContext();
     // debugger
     return await db
-      .collection('user_info')
+      .collection('userInfo')
       .where({
         _openid: wxContext.OPENID
       })
@@ -30,7 +30,7 @@ exports.main = async (event, context) => {
         data: {
           nickName: event.nickName,
           wxid: event.wxid,
-          update_time: db.serverDate()
+          updateTime: db.serverDate()
         }
       });
   } catch (e) {

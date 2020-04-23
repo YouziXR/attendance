@@ -4,11 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    avatarUrl:
-      'https://wx.qlogo.cn/mmopen/vi_32/reRVI0fwEMx4A3AgOAegicXlib635ic0v71HKCShUldKvkgMQdDibzlHicXicMTk2T8P23ibd3ko6Cia51Pg8sII18sA1g/132',
-    title: '1',
-    timeStart: null,
-    status: true
+    activityInfo: {}
   },
 
   /**
@@ -19,16 +15,34 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {},
+  onReady: function () {
+    wx.cloud
+      .callFunction({
+        name: 'read-user-clock-in'
+      })
+      .then(res => {
+        console.log('%c read-user-clock-in', 'color: blue', res);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    const d = new Date().getTime();
+    this.setData({
+      activityInfo: {
+        url:
+          'https://wx.qlogo.cn/mmopen/vi_32/reRVI0fwEMx4A3AgOAegicXlib635ic0v71HKCShUldKvkgMQdDibzlHicXicMTk2T8P23ibd3ko6Cia51Pg8sII18sA1g/132',
+        title: '1',
+        startTime: d,
+        endTime: new Date(d + 60 * 60 * 1000).getTime(),
+        status: true
+      }
+    });
+  },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    this.setData({
-      timeStart: new Date()
-    });
-  },
+  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏

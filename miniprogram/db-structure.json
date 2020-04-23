@@ -1,5 +1,5 @@
 {
-  "user_info": {
+  "userInfo": {
     "_id": "auto generate",
     "wx_id": "backend get",
     "nickname": "frontend get",
@@ -15,6 +15,10 @@
     "create_time": "date time",
     "update_time": "date time",
     "type": "once or daily",
+    "activity_time": {
+      "start_time": "date time, user set",
+      "end_time": "date time, user set"
+    },
     "attributes": [
       {
         "name": "string user set",
@@ -25,9 +29,11 @@
   },
   "user_clock_in": {
     "id": "auto generate",
-    "activity_id": "",
+    "activity_id": "forein key[clock_in_activities]._id",
     "_openid": "auto generate",
     "create_time": "date time",
-    "update_time": "date time"
+    "update_time": "date time",
+    "status": "bool, true: clock in, false: not clock in",
+    "clock_in_time": "date time, server generate"
   }
 }
