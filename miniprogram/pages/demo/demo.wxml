@@ -26,7 +26,7 @@
       <!-- </view> -->
     </view>
   </view>
-  <basic-card class="basic-card" cardTitle="我的打卡">
+  <basic-card cardTitle="我的打卡">
     <view class="card-content" slot="content">
       <navi-img navi-url="../index/index" img-url="/images/icons/history-add.png" hintMsg="创建的打卡" class="inner-card"></navi-img>
       <navi-img navi-url="/pages/participate-clock-in/participate-clock-in" img-url="/images/icons/history-take-in.png" hintMsg="参与的打卡" class="inner-card"></navi-img>
@@ -34,7 +34,7 @@
     </view>
   </basic-card>
   <!-- 创建打卡 -->
-  <basic-card class="basic-card" cardTitle="创建打卡">
+  <basic-card cardTitle="创建打卡">
     <view class="card-content" slot="content">
       <navi-img navi-url="../index/index" img-url="/images/icons/add-once.png" hintMsg="单次打卡" class="inner-card"></navi-img>
       <navi-img navi-url="../im/im" img-url="/images/icons/add-daily.png" hintMsg="每日打卡" class="inner-card"></navi-img>
@@ -42,7 +42,7 @@
     </view>
   </basic-card>
   <!-- 精选打卡 -->
-  <basic-card class="basic-card" cardTitle="精选打卡">
+  <basic-card cardTitle="精选打卡">
     <view class="card-content" slot="content">
       <!-- <navi-img navi-url="../index/index" img-url="/images/icons/history-add.png" hintMsg="创建的打卡" class="inner-card"></navi-img>
       <navi-img navi-url="../im/im" img-url="/images/icons/history-take-in.png" hintMsg="参与的打卡" class="inner-card"></navi-img> -->
@@ -55,7 +55,7 @@
     </view>
   </basic-card>
   <!-- 更多功能 -->
-  <basic-card class="basic-card" cardTitle="更多功能">
+  <basic-card cardTitle="更多功能">
     <view class="card-content" slot="content">
       <navi-img navi-url="../index/index" img-url="/images/icons/vote.png" hintMsg="群投票" class="inner-card"></navi-img>
       <navi-img navi-url="../im/im" img-url="/images/icons/questionnaire.png" hintMsg="群问卷" class="inner-card"></navi-img>
