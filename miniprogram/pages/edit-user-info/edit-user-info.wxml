@@ -28,7 +28,7 @@
   </mp-cells> -->
 </mp-form>
 <view class="weui-btn-area">
-  <button class="weui-btn" type="primary" bindtap="submitForm">确定</button>
+  <button class="weui-btn" type="primary" bindtap="submitForm">保存</button>
 </view>
 <mp-dialog title="提示" show="{{showValidateDlg}}" bindbuttontap="tapDialogButton" buttons="{{[{text: '确定'}]}}">
   <view>{{contentValidateDlg}}</view>
