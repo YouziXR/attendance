@@ -3,7 +3,7 @@
  * @Author: youzi
  * @Date: 2020-04-21 16:57:27
  * @LastEditors: youzi
- * @LastEditTime: 2020-04-23 12:01:13
+ * @LastEditTime: 2020-04-24 15:59:30
  */
 
 // 云函数入口文件
@@ -109,8 +109,8 @@ const readClockInActivity = async activityId => {
       return await readUserInfo(tmpActivityInfo.creater).then(res => {
         let tmpUserInfo = res.data[0];
         let { nickName, avatarUrl } = tmpUserInfo;
-        let { activityTime, description, name, type } = tmpActivityInfo;
-        Object.assign(activityWithUser, { nickName, avatarUrl, activityTime, description, name, type });
+        let { activityTime, description, name, type, createTime } = tmpActivityInfo;
+        Object.assign(activityWithUser, { nickName, avatarUrl, activityTime, description, name, type, createTime });
         console.warn('readClockInActivity', activityWithUser);
         return activityWithUser;
       });
