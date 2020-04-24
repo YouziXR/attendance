@@ -1,2 +1,15 @@
-<!--miniprogram/pages/clock-in-detail/clock-in-detail.wxml-->
-<text>miniprogram/pages/clock-in-detail/clock-in-detail.wxml</text>
+<view class="container">
+  <view class="basic-card clock-in__info">
+    <text class="name">{{activityInfo.name}}</text>
+    <text class="name">{{activityInfo.type === 'once' ? '单次打卡' : '每日打卡'}}</text>
+    <text class="name">{{createTime}}</text>
+  </view>
+  <view class="basic-card clock-in__desc">{{activityInfo.description}}</view>
+  <view class="weui-btn-area">
+    <button class="weui-btn" type="primary" bindtap="submitForm">保存</button>
+  </view>
+  <view class="basic-card nav-list"></view>
+  <view class="weui-footer">
+    <text class="weui-footer__text">test</text>
+  </view>
+</view>

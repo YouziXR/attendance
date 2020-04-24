@@ -3,7 +3,7 @@
     <image class="user-avatar" src="{{avatarUrl}}" mode="widthFix" lazy-load="false" binderror="" bindload="" />
     <view class="nav-card__desc">
       <text class="nav-card__title">{{name}}</text>
-      <text class="nav-card__time">{{activityTime.startTime}}</text>
+      <text class="nav-card__time">{{startTimeFormat}}</text>
       <view class="nav-card__status-container">
         <text class="{{activityStatus === '进行中' ? 'nav-card__status-time' : 'nav-card__status-time__not'}}">{{activityStatus}}
         </text>

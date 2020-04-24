@@ -1,23 +1,27 @@
 // miniprogram/pages/clock-in-detail/clock-in-detail.js
+import dateFormat from '../../utils/date-format';
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    activityInfo: {}
+    activityInfo: {},
+    createTime: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.query);
     const eventChannel = this.getOpenerEventChannel();
     // 监听getInfoFromListPage事件，获取上一页面通过eventChannel传送到当前页面的数据
     let that = this;
     eventChannel.on('getInfoFromListPage', function (data) {
+      let { createTime } = data;
+      let date = dateFormat(createTime);
       that.setData({
-        activityInfo: data
+        activityInfo: data,
+        createTime: `${date.year}${date.month}${date.date} ${date.day} ${date.hour}:${date.minute}`
       });
     });
   },

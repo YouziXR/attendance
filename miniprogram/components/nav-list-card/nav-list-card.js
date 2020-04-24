@@ -1,4 +1,5 @@
 // components/nav-list-card/nav-list-card.js
+import dateFormat from '../../utils/date-format';
 Component({
   options: {
     addGlobalClass: true,
@@ -17,7 +18,9 @@ Component({
   /**
    * 组件的初始数据
    */
-  data: {},
+  data: {
+    startTimeFormat: ''
+  },
 
   /**
    * 组件的方法列表
@@ -40,7 +43,14 @@ Component({
       // 活动状态，可选值：未开始，进行中，已结束
       console.warn('%c activityInfo', 'color:blue', info);
       let activityStatus;
-      let { startTime, endTime } = info;
+      let { activityTime } = info;
+      let { startTime, endTime } = activityTime;
+      let date = dateFormat(startTime);
+      this.setData({
+        startTimeFormat: `${date.month}${date.date} ${date.day} ${date.hour}:${date.minute}`
+      });
+      startTime = new Date(startTime);
+      endTime = new Date(endTime);
       let now = new Date().getTime();
       if (now < startTime) {
         activityStatus = '未开始';
