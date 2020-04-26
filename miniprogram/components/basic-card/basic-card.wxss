@@ -2,7 +2,7 @@
   width: 100%;
   position: relative;
   box-sizing: border-box;
-  margin-bottom: 25rpx;
+  margin-bottom: 30rpx;
   border-radius: 12rpx;
   background-color: white;
   border: 1px solid #eee;

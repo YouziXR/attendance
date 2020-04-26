@@ -14,7 +14,7 @@
   /* align-items: center; */
   position: relative;
   box-sizing: border-box;
-  margin-bottom: 25rpx;
+  margin-bottom: 30rpx;
   border-radius: 12rpx;
   padding: 20rpx;
   background-color: white;
@@ -46,13 +46,15 @@
 button {
   background: initial;
 }
-
 button:focus {
   outline: 0;
 }
-
 button::after {
   border: none;
+}
+button[disabled][type='primary'] {
+  background-color: #9ed99d !important;
+  color: rgba(255, 255, 255, 0.6) !important;
 }
 
 page {
