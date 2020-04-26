@@ -43,7 +43,7 @@
 }
 /* 打卡是否结束 */
 .nav-card__status-time {
-  background-color: cornflowerblue;
+  background-color: #24b0fc;
 }
 .nav-card__status-time__not {
   background-color: #cccccc;

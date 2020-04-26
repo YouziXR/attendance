@@ -11,7 +11,7 @@
 }
 .user-avatar {
   /* display: block; */
-  margin-left: 20rpx;
+  /* margin-left: 20rpx; */
   /* border: 2px solid #eee; */
   /* box-shadow: 5rpx 5rpx 5rpx #666; */
 }
