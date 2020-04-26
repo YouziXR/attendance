@@ -1,1 +1,39 @@
-/* miniprogram/pages/clock-in-detail/clock-in-detail.wxss */
+/* 基础信息容器 */
+.clock-in__info {
+  display: flex;
+  flex-direction: column;
+}
+.clock-in__info .type {
+  color: #fff;
+  padding: 5rpx;
+  font-size: 90%;
+}
+.clock-in__info .once {
+  background-color: #24b0fc;
+}
+.clock-in__info .daily {
+  background-color: #1fba21;
+}
+.clock-in__info .time {
+  font-size: 90%;
+}
+
+/* 描述信息容器 */
+.clock-in__desc {
+  color: #ccc;
+}
+
+.weui-btn {
+  width: 100%;
+}
+
+/* footer容器 */
+.weui-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40rpx 0 30rpx 0;
+}
+.weui-footer text, .weui-footer image {
+  margin-bottom: 30rpx;
+}

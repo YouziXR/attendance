@@ -1,15 +1,20 @@
 <view class="container">
   <view class="basic-card clock-in__info">
     <text class="name">{{activityInfo.name}}</text>
-    <text class="name">{{activityInfo.type === 'once' ? '单次打卡' : '每日打卡'}}</text>
-    <text class="name">{{createTime}}</text>
+    <text class="{{'type' + activityInfo.type}}">{{activityInfo.type === 'once' ? '单次打卡' : '每日打卡'}}
+    </text>
+    <text class="time">{{startTime}}</text>
   </view>
-  <view class="basic-card clock-in__desc">{{activityInfo.description}}</view>
-  <view class="weui-btn-area">
-    <button class="weui-btn" type="primary" bindtap="submitForm">保存</button>
+  <view class="basic-card clock-in__desc">详细描述：
+    {{activityInfo.description}}</view>
+  <view class="">
+    <button class="weui-btn" type="primary" disabled="{{activityInfo.status}}">{{activityInfo.status ? '已打卡' : '未打卡'}}
+    </button>
   </view>
-  <view class="basic-card nav-list"></view>
+  <!-- <view class="basic-card nav-list"></view> -->
   <view class="weui-footer">
-    <text class="weui-footer__text">test</text>
+    <text class="weui-footer__text">- {{createTime}} 发起 -</text>
+    <image class="user-avatar" src="{{activityInfo.avatarUrl}}" mode="widthFix" lazy-load="false" />
+    <text class="weui-footer__text">{{activityInfo.nickName}}</text>
   </view>
 </view>
