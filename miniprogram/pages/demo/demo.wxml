@@ -36,7 +36,7 @@
   <!-- 创建打卡 -->
   <basic-card cardTitle="创建打卡">
     <view class="card-content" slot="content">
-      <navi-img navi-url="../index/index" img-url="/images/icons/add-once.png" hintMsg="单次打卡" class="inner-card"></navi-img>
+      <navi-img navi-url="../add-activity-once/add-activity-once" img-url="/images/icons/add-once.png" hintMsg="单次打卡" class="inner-card"></navi-img>
       <navi-img navi-url="../im/im" img-url="/images/icons/add-daily.png" hintMsg="每日打卡" class="inner-card"></navi-img>
       <!-- <navi-img navi-url="../im/im" img-url="/images/icons/history-take-in.png" hintMsg="参与的打卡" class="inner-card"></navi-img> -->
     </view>

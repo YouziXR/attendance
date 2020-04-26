@@ -1,0 +1,35 @@
+<mp-form id="form" rules="{{rules}}" models="{{formData}}">
+  <mp-cells title="创建打卡">
+    <mp-cell prop="name" show-error>
+      <view slot="title" class="weui-label">
+        打卡标题
+        <text style="color:red">*</text>
+      </view>
+      <input type="text" data-field="name" class="weui-input" placeholder="{{'标题最多'+nameMaxLength+'个字符'}}" bindinput="formInputChange" value="{{formData.name}}" maxlength="{{nameMaxLength}}"/>
+      <view slot="footer" class="">{{nameLength}}/{{nameMaxLength}}字</view>
+    </mp-cell>
+    <mp-cell prop="description" title="补充描述">
+      <input type="text" bindinput="formInputChange" data-field="description" class="weui-input" placeholder="选填" value="{{formData.description}}" />
+    </mp-cell>
+    <!-- <mp-cell prop="date" title="日期" ext-class="">
+      <picker data-field="date" mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+        <view class="weui-input">{{date}}</view>
+      </picker>
+    </mp-cell>
+    <mp-cell prop="vcode" title="验证码" ext-class=" weui-cell_vcode">
+      <input bindinput="formInputChange" data-field="vcode" class="weui-input" placeholder="请输入验证码" />
+      <image slot="footer" class="weui-vcode-img" src="../images/vcode.jpg" style="width: 108px"></image>
+    </mp-cell> -->
+  </mp-cells>
+  <!-- <mp-cells title="提交后表单项报错">
+    <mp-cell show-error prop="idcard" title="卡号" ext-class="">
+      <input bindinput="formInputChange" data-field="idcard" class="weui-input" placeholder="请输入卡号" />
+    </mp-cell>
+  </mp-cells> -->
+</mp-form>
+<view class="weui-btn-area">
+  <button class="weui-btn" type="primary" bindtap="submitForm">保存</button>
+</view>
+<mp-dialog title="提示" show="{{showValidateDlg}}" bindbuttontap="tapDialogButton" buttons="{{[{text: '确定'}]}}">
+  <view>{{contentValidateDlg}}</view>
+</mp-dialog>
