@@ -1,5 +1,5 @@
 <view class="container">
-  <mp-loading duration="{{500}}" ext-class="loading" type="dot-gray" show="{{show}}" animated="{{animated}}"></mp-loading>
+  <!-- <mp-loading duration="{{500}}" ext-class="loading" type="dot-gray" show="{{show}}" animated="{{animated}}"></mp-loading> -->
   <view wx:if="{{!show}}" class="container__nav-list" bind:navigateevent="onTapNavigate">
     <nav-list-card wx:for="{{activityInfo}}" wx:key="index" activity-info="{{item}}" style="width:100%"></nav-list-card>
   </view>

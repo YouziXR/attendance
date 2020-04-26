@@ -53,6 +53,7 @@ Page({
           activityInfo: res.result
         });
         setTimeout(() => {
+          wx.stopPullDownRefresh();
           this.setData({
             show: false
           });
@@ -71,7 +72,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.getClockInActivities();
+    wx.startPullDownRefresh();
   },
 
   /**
@@ -93,7 +94,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.onReady();
+    this.getClockInActivities();
+    // this.onReady();
   },
 
   /**
