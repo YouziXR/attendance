@@ -1,4 +1,6 @@
 // miniprogram/pages/add-activity-once/add-activity-once.js
+import dateFormat from '../../utils/date-format';
+
 Page({
   /**
    * 页面的初始数据
@@ -22,7 +24,11 @@ Page({
     // 打卡标题字符的最大值
     nameMaxLength: 15,
     // 打卡标题当前字符值
-    nameLength: 0
+    nameLength: 0,
+    startDate: '',
+    endDate: '',
+    startTime: '',
+    endTime: ''
   },
   /**
    * @desc: 表单填写时触发的函数
@@ -45,10 +51,31 @@ Page({
       });
     }
   },
+
+  /**
+   * @desc: load时初始化数据
+   * @param {type}
+   * @author: youzi
+   * @Date: 2020-04-27 16:13:30
+   */
+  initDataOnLoad() {
+    let d = new Date();
+    let nowDate = dateFormat(d);
+    let laterDate = dateFormat(d.getTime() + 2 * 24 * 60 * 60 * 1000);
+    let startDate = `${nowDate.year}-${nowDate.month}-${nowDate.date}`,
+      startTime = `${nowDate.hour}:${nowDate.minute}`;
+    this.setData({
+      startDate,
+      startTime,
+      ['formData.activityTime.startTime']: startDate + ' ' + startTime
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {},
+  onLoad: function (options) {
+    this.initDataOnLoad();
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

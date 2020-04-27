@@ -5,11 +5,31 @@
         打卡标题
         <text style="color:red">*</text>
       </view>
-      <input type="text" data-field="name" class="weui-input" placeholder="{{'标题最多'+nameMaxLength+'个字符'}}" bindinput="formInputChange" value="{{formData.name}}" maxlength="{{nameMaxLength}}"/>
+      <input type="text" data-field="name" class="weui-input" placeholder="{{'标题最多' + nameMaxLength + '个字符'}}" bindinput="formInputChange" value="{{formData.name}}" maxlength="{{nameMaxLength}}" />
       <view slot="footer" class="">{{nameLength}}/{{nameMaxLength}}字</view>
     </mp-cell>
     <mp-cell prop="description" title="补充描述">
       <input type="text" bindinput="formInputChange" data-field="description" class="weui-input" placeholder="选填" value="{{formData.description}}" />
+    </mp-cell>
+    <mp-cell prop="startTime" title="开始时间" ext-class="">
+      <view class="pick-time">
+        <picker data-field="activityTime.startTime" mode="date" model:value="{{startDate}}" start="{{startDate}}">
+          {{startDate}}
+        </picker>
+        <picker data-field="activityTime.startTime" mode="time" model:value="{{startTime}}">
+          {{startTime}}
+        </picker>
+      </view>
+    </mp-cell>
+    <mp-cell prop="endTime" title="开始时间" ext-class="">
+      <view class="pick-time">
+        <picker data-field="activityTime.endTime" mode="date" model:value="{{endDate}}" start="{{endDate}}">
+          {{endDate}}
+        </picker>
+        <picker data-field="activityTime.endTime" mode="time" model:value="{{endTime}}">
+          {{endTime}}
+        </picker>
+      </view>
     </mp-cell>
     <!-- <mp-cell prop="date" title="日期" ext-class="">
       <picker data-field="date" mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
