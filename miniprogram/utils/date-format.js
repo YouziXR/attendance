@@ -9,13 +9,13 @@ const dateFormat = date => {
   let d = new Date(date);
   let days = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
   return {
-    year: d.getFullYear() + '年',
-    month: unshiftPrefix(d.getMonth() + 1, 1, '0') + '月',
-    date: unshiftPrefix(d.getDate(), 1, '0') + '日',
+    year: d.getFullYear() + '',
+    month: unshiftPrefix(d.getMonth() + 1),
+    date: unshiftPrefix(d.getDate()),
     day: days[d.getDay()],
-    hour: unshiftPrefix(d.getHours(), 1, '0'),
-    minute: unshiftPrefix(d.getMinutes(), 1, '0'),
-    second: unshiftPrefix(d.getSeconds(), 1, '0')
+    hour: unshiftPrefix(d.getHours()),
+    minute: unshiftPrefix(d.getMinutes()),
+    second: unshiftPrefix(d.getSeconds())
   };
 };
 export default dateFormat;
