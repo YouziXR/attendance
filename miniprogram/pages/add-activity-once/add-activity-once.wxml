@@ -13,20 +13,20 @@
     </mp-cell>
     <mp-cell prop="startTime" title="开始时间" ext-class="">
       <view class="pick-time">
-        <picker data-field="activityTime.startTime" mode="date" model:value="{{startDate}}" start="{{startDate}}">
+        <picker data-field="startDate" mode="date" value="{{startDate}}" start="{{startDate}}" bindchange="onDateTimeChange">
           {{startDate}}
         </picker>
-        <picker data-field="activityTime.startTime" mode="time" model:value="{{startTime}}">
+        <picker data-field="startTime" mode="time" value="{{startTime}}" bindchange="onDateTimeChange">
           {{startTime}}
         </picker>
       </view>
     </mp-cell>
     <mp-cell prop="endTime" title="开始时间" ext-class="">
       <view class="pick-time">
-        <picker data-field="activityTime.endTime" mode="date" model:value="{{endDate}}" start="{{endDate}}">
+        <picker data-field="endDate" mode="date" value="{{endDate}}" start="{{endDate}}" bindchange="onDateTimeChange">
           {{endDate}}
         </picker>
-        <picker data-field="activityTime.endTime" mode="time" model:value="{{endTime}}">
+        <picker data-field="endTime" mode="time" value="{{endTime}}" bindchange="onDateTimeChange">
           {{endTime}}
         </picker>
       </view>

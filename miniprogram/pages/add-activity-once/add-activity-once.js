@@ -25,6 +25,7 @@ Page({
     nameMaxLength: 15,
     // 打卡标题当前字符值
     nameLength: 0,
+    // 打卡日期时间
     startDate: '',
     endDate: '',
     startTime: '',
@@ -33,7 +34,6 @@ Page({
   /**
    * @desc: 表单填写时触发的函数
    * @param {object} e 事件参数e
-   * @return:
    * @author: youzi
    * @Date: 2020-04-26 18:51:31
    */
@@ -53,6 +53,29 @@ Page({
   },
 
   /**
+   * @desc: 时间日期选择器触发时的函数
+   * @param {type}
+   * @return:
+   * @author: youzi
+   * @Date: 2020-04-27 19:45:58
+   */
+  onDateTimeChange(e) {
+    const { field } = e.currentTarget.dataset;
+    const val = e.detail.value;
+    this.setData({
+      [field]: val
+    });
+    if (field.includes('end')) {
+      this.setData({
+        ['formData.activityTime.endTime']: this.data.endDate + ' ' + this.data.endTime
+      });
+    } else {
+      this.setData({
+        ['formData.activityTime.startTime']: this.data.startDate + ' ' + this.data.startTime
+      });
+    }
+  },
+  /**
    * @desc: load时初始化数据
    * @param {type}
    * @author: youzi
@@ -63,11 +86,16 @@ Page({
     let nowDate = dateFormat(d);
     let laterDate = dateFormat(d.getTime() + 2 * 24 * 60 * 60 * 1000);
     let startDate = `${nowDate.year}-${nowDate.month}-${nowDate.date}`,
-      startTime = `${nowDate.hour}:${nowDate.minute}`;
+      startTime = `${nowDate.hour}:${nowDate.minute}`,
+      endDate = `${laterDate.year}-${laterDate.month}-${laterDate.date}`,
+      endTime = startTime;
     this.setData({
       startDate,
       startTime,
-      ['formData.activityTime.startTime']: startDate + ' ' + startTime
+      endDate,
+      endTime,
+      ['formData.activityTime.startTime']: startDate + ' ' + startTime,
+      ['formData.activityTime.endTime']: endDate + ' ' + endTime
     });
   },
   /**
