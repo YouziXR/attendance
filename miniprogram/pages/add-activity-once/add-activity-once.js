@@ -99,6 +99,19 @@ Page({
     });
   },
   /**
+   * @desc:
+   * @param {type}
+   * @return:
+   * @author: youzi
+   * @Date: 2020-04-28 20:49:42
+   */
+  submitForm(e) {
+    console.log('tapDialogButton');
+
+    // this.selectComponent('#activityBasicInfo').submitForm();
+    console.log(this.selectComponent('#activityBasicInfo').submitForm());
+  },
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {

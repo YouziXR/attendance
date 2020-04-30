@@ -1,0 +1,7 @@
+/* components/activity-basic-info/activity-basic-info.wxss */
+.pick-time {
+  display: flex;
+}
+.pick-time :nth-child(2) {
+  margin-left: 20rpx;
+}

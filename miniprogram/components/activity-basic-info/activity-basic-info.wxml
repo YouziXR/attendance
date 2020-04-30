@@ -1,0 +1,41 @@
+<!-- * @Description: 创建打卡-打卡基本信息组件，包括了打卡标题，描述，开始结束时间
+ * @Author: youzi
+ * @Date: 2020-04-28 18:49:58
+ * @LastEditors: youzi
+ * @LastEditTime: 2020-04-28 18:51:19 -->
+ <mp-toptips msg="{{error}}" type="error" show="{{!!error}}"></mp-toptips>
+<mp-form id="form" rules="{{rules}}" models="{{formData}}">
+  <mp-cells title="创建打卡">
+    <mp-cell prop="name" show-error>
+      <view slot="title" class="weui-label">
+        打卡标题
+        <text style="color:red">*</text>
+      </view>
+      <input type="text" data-field="name" class="weui-input" placeholder="{{'标题最多' + nameMaxLength + '个字符'}}" bindinput="formInputChange" value="{{formData.name}}" maxlength="{{nameMaxLength}}" />
+      <view slot="footer">{{nameLength}}/{{nameMaxLength}}字</view>
+    </mp-cell>
+    <mp-cell prop="description" title="补充描述">
+      <input type="text" bindinput="formInputChange" data-field="description" class="weui-input" placeholder="选填" value="{{formData.description}}" />
+    </mp-cell>
+    <mp-cell prop="startTime" title="开始时间" ext-class="">
+      <view class="pick-time">
+        <picker data-field="startDate" mode="date" value="{{startDate}}" start="{{startDate}}" bindchange="onDateTimeChange">
+          {{startDate}}
+        </picker>
+        <picker data-field="startTime" mode="time" value="{{startTime}}" bindchange="onDateTimeChange">
+          {{startTime}}
+        </picker>
+      </view>
+    </mp-cell>
+    <mp-cell prop="endTime" title="开始时间" ext-class="">
+      <view class="pick-time">
+        <picker data-field="endDate" mode="date" value="{{endDate}}" start="{{endDate}}" bindchange="onDateTimeChange">
+          {{endDate}}
+        </picker>
+        <picker data-field="endTime" mode="time" value="{{endTime}}" bindchange="onDateTimeChange">
+          {{endTime}}
+        </picker>
+      </view>
+    </mp-cell>
+  </mp-cells>
+</mp-form>
