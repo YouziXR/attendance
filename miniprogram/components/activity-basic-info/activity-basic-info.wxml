@@ -3,39 +3,60 @@
  * @Date: 2020-04-28 18:49:58
  * @LastEditors: youzi
  * @LastEditTime: 2020-04-28 18:51:19 -->
- <mp-toptips msg="{{error}}" type="error" show="{{!!error}}"></mp-toptips>
-<mp-form id="form" rules="{{rules}}" models="{{formData}}">
+<mp-toptips msg="{{ error }}" type="error" show="{{ !!error }}"></mp-toptips>
+<mp-form id="form" rules="{{ rules }}" models="{{ formData }}">
   <mp-cells title="创建打卡">
     <mp-cell prop="name" show-error>
       <view slot="title" class="weui-label">
         打卡标题
-        <text style="color:red">*</text>
+        <text style="color: red;">*</text>
       </view>
-      <input type="text" data-field="name" class="weui-input" placeholder="{{'标题最多' + nameMaxLength + '个字符'}}" bindinput="formInputChange" value="{{formData.name}}" maxlength="{{nameMaxLength}}" />
-      <view slot="footer">{{nameLength}}/{{nameMaxLength}}字</view>
+      <input type="text" data-field="name" class="weui-input" placeholder="{{ '标题最多' + nameMaxLength + '个字符' }}" bindinput="formInputChange" maxlength="{{ nameMaxLength }}" />
+      <view slot="footer" class="ext-footer">{{ nameLength }}/{{ nameMaxLength }}字</view>
     </mp-cell>
-    <mp-cell prop="description" title="补充描述">
-      <input type="text" bindinput="formInputChange" data-field="description" class="weui-input" placeholder="选填" value="{{formData.description}}" />
+    <mp-cell title="补充描述">
+      <input type="text" bindinput="formInputChange" data-field="description" class="weui-input" placeholder="选填" />
     </mp-cell>
-    <mp-cell prop="startTime" title="开始时间" ext-class="">
+    <mp-cell prop="activityTime" title="开始时间" ext-class="">
       <view class="pick-time">
-        <picker data-field="startDate" mode="date" value="{{startDate}}" start="{{startDate}}" bindchange="onDateTimeChange">
-          {{startDate}}
+        <picker data-field="startDate" mode="date" value="{{ startDate }}" start="{{ startDate }}" bindchange="onDateTimeChange">
+          {{ startDate }}
         </picker>
-        <picker data-field="startTime" mode="time" value="{{startTime}}" bindchange="onDateTimeChange">
-          {{startTime}}
+        <picker data-field="startTime" mode="time" value="{{ startTime }}" bindchange="onDateTimeChange" class="picker-time__time">
+          {{ startTime }}
         </picker>
       </view>
     </mp-cell>
-    <mp-cell prop="endTime" title="开始时间" ext-class="">
+    <mp-cell prop="activityTime" title="结束时间" ext-class="">
       <view class="pick-time">
-        <picker data-field="endDate" mode="date" value="{{endDate}}" start="{{endDate}}" bindchange="onDateTimeChange">
-          {{endDate}}
+        <picker data-field="endDate" mode="date" value="{{ endDate }}" start="{{ startDate }}" bindchange="onDateTimeChange">
+          {{ endDate }}
         </picker>
-        <picker data-field="endTime" mode="time" value="{{endTime}}" bindchange="onDateTimeChange">
-          {{endTime}}
+        <picker data-field="endTime" mode="time" value="{{ endTime }}" bindchange="onDateTimeChange" class="picker-time__time">
+          {{ endTime }}
         </picker>
       </view>
     </mp-cell>
+  </mp-cells>
+  <mp-cells title="地点设置" footer="{{addressFooter}}">
+    <mp-cell title="指定打卡地点">
+      <switch slot="footer" checked="{{addressChecked}}" type="switch" bindchange="onAddressChange"></switch>
+    </mp-cell>
+    <view wx:if="{{addressChecked}}">
+      <navigator url="../../pages/index/index" open-type="navigate">
+        <mp-cell>
+          <view slot="title">
+            定位
+            <image class="img__title" src="../../images/icons/locate.png" mode="widthFix" lazy-load="false" />
+          </view>
+        </mp-cell>
+      </navigator>
+      <mp-cell title="地点">
+        <input type="text" data-field="detailAddress" placeholder="详细地址（选填）" bindinput="formInputChange"></input>
+      </mp-cell>
+      <mp-cell title="打卡范围" footer="米">
+        <input value="500" type="number" bindinput="formInputChange"></input>
+      </mp-cell>
+    </view>
   </mp-cells>
 </mp-form>

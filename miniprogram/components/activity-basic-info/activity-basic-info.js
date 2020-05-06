@@ -3,7 +3,8 @@ import dateFormat from '../../utils/date-format';
 
 Component({
   options: {
-    addGlobalClass: true
+    addGlobalClass: true,
+    pureDataPattern: /^pure/
   },
   /**
    * 组件的属性列表
@@ -15,14 +16,30 @@ Component({
    */
   data: {
     // 存放表单的对象
-    formData: {},
+    formData: {
+      addrRange: 500
+    },
+    // 用于防抖函数的timer
+    pureTimer: false,
     // 表单规则
     rules: [
       {
         name: 'name',
         rules: [{ required: true, message: '打卡标题必填' }]
+      },
+      {
+        name: 'activityTime',
+        rules: {
+          message: '开始时间应该小于结束时间',
+          validator: (rule, value, param, models) => {
+            console.warn(rule, value, param, models);
+          }
+        }
       }
     ],
+    // 打卡地点相关
+    addressChecked: false,
+    addressFooter: '',
     // 错误提示文字，也用来判断是否显示错误提示框
     error: '',
     // 打卡标题字符的最大值
@@ -47,23 +64,27 @@ Component({
   methods: {
     /**
      * @desc: 表单填写时触发的函数
+     * @version: 版本迭代，思考了之后还是把这个函数改造成了防抖函数
      * @param {object} e 事件参数e
      * @author: youzi
      * @Date: 2020-04-26 18:51:31
      */
     formInputChange(e) {
-      const { field } = e.currentTarget.dataset;
-      const val = e.detail.value;
-      if (field === 'name') {
-        this.setData({
-          nameLength: val.length,
-          [`formData.${field}`]: val
-        });
-      } else {
-        this.setData({
-          [`formData.${field}`]: val
-        });
-      }
+      this.data.pureTimer && clearTimeout(this.data.pureTimer);
+      this.data.pureTimer = setTimeout(() => {
+        const { field } = e.currentTarget.dataset;
+        const val = e.detail.value;
+        if (field === 'name') {
+          this.setData({
+            nameLength: val.length,
+            [`formData.${field}`]: val
+          });
+        } else {
+          this.setData({
+            [`formData.${field}`]: val
+          });
+        }
+      }, 500);
     },
     /**
      * @desc: 时间日期选择器触发时的函数
@@ -85,6 +106,28 @@ Component({
       } else {
         this.setData({
           ['formData.activityTime.startTime']: this.data.startDate + ' ' + this.data.startTime
+        });
+      }
+    },
+    /**
+     * @desc: 指定打卡地点switch变化的函数
+     * @param {object} e
+     * @return: null
+     * @author: youzi
+     * @Date: 2020-05-06 16:40:06
+     */
+    onAddressChange(e) {
+      const val = e.detail.value;
+      this.setData({
+        addressChecked: val
+      });
+      if (val) {
+        this.setData({
+          addressFooter: '打卡范围（300-2000）米'
+        });
+      } else {
+        this.setData({
+          addressFooter: ''
         });
       }
     },
@@ -120,13 +163,14 @@ Component({
      * @Date: 2020-04-28 20:26:18
      */
     submitForm() {
+      let that = this;
       this.selectComponent('#form').validate((valid, err) => {
         if (!valid) {
           console.error(err);
-          const firstError = Object.keys(err);
-          if (firstError.length) {
-            this.setData({
-              error: err[firstError[0]].message
+          const errMsg = err[0].message;
+          if (err.length) {
+            that.setData({
+              error: errMsg
             });
           }
         } else {
@@ -135,6 +179,7 @@ Component({
           });
         }
       });
+      console.log(this.data.formData);
     }
   }
 });

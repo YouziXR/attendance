@@ -2,6 +2,18 @@
 .pick-time {
   display: flex;
 }
-.pick-time :nth-child(2) {
+.picker-time__time {
   margin-left: 20rpx;
+}
+
+.ext-footer {
+  display: inline-block;
+  padding-right: 10rpx;
+  vertical-align: middle;
+}
+
+.img__title {
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
 }

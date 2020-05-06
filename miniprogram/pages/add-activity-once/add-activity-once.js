@@ -109,7 +109,11 @@ Page({
     console.log('tapDialogButton');
 
     // this.selectComponent('#activityBasicInfo').submitForm();
-    console.log(this.selectComponent('#activityBasicInfo').submitForm());
+    const err = this.selectComponent('#activityBasicInfo').submitForm()
+    console.log(err);
+    if (err) {
+      
+    }
   },
   /**
    * 生命周期函数--监听页面加载
