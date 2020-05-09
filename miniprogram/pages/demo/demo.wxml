@@ -16,13 +16,16 @@
       </view>
       <!-- <image class="user-avatar" src="{{userAvatarSrc}}" mode="widthFix" lazy-load="false" binderror="" bindload="" /> -->
       <view class="user-nick-name">
-        <!-- <open-data type="userNickName"></open-data> -->
-        <text class="" selectable="false" space="false" decode="false">{{userNickName}}</text>
+        <open-data type="userNickName"></open-data>
+        <!-- <text class="" selectable="false" space="false" decode="false">{{userNickName}}</text> -->
       </view>
       <!-- <view> -->
-      <navigator url="../edit-user-info/edit-user-info" hover-class="hover-edit-info" class="edit-info">
+      <button wx:if="{{!userNickName}}" class="edit-info" size="default" type="default" hover-class="hover-edit-info" open-type="getUserInfo">
+        点击登录
+      </button>
+      <button wx:else hover-class="hover-edit-info" class="edit-info" bind:tap="onEditUserTap" size="default" type="default">
         编辑资料
-      </navigator>
+      </button>
       <!-- </view> -->
     </view>
   </view>

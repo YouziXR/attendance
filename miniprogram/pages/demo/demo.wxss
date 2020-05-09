@@ -21,14 +21,18 @@
 .edit-info {
   position: absolute;
   right: 40rpx;
-  font-size: 70%;
+  width: 150rpx !important;
+  text-align: center;
+  font-size: 70% !important;
   padding: 12rpx;
-  color: #666666;
+  color: #666666 !important;
   border: 1px solid #666666;
   border-radius: 25rpx;
+  font-weight: normal !important;
+  background-color: white !important;
 }
 .hover-edit-info {
-  background-color: rgba(229, 229, 229, 0.8);
+  background-color: rgba(229, 229, 229, 0.8) !important;
 }
 .card-content .special-list {
   width: 100%;

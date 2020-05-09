@@ -3,7 +3,7 @@
  * @Author: youzi
  * @Date: 2020-04-10 10:25:25
  * @LastEditors: youzi
- * @LastEditTime: 2020-04-22 22:41:18
+ * @LastEditTime: 2020-05-07 19:44:52
  */
 // miniprogram/pages/demo/demo.js
 Page({
@@ -15,8 +15,16 @@ Page({
     activitySpecialList: [],
     userNickName: ''
   },
-  onTestCpmtTab(val) {
-    console.log(val);
+  /**
+   * @desc: 跳转到用户信息编辑页面
+   * @param {e}
+   * @author: youzi
+   * @Date: 2020-05-07 19:44:28
+   */
+  onEditUserTap(e) {
+    wx.navigateTo({
+      url: '../edit-user-info/edit-user-info'
+    });
   },
   /**
    * @param {null} null
