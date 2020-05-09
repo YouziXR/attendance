@@ -4,6 +4,8 @@
     "mp-cell": "/miniprogram_npm/weui-miniprogram/cell/cell",
     "mp-form": "/miniprogram_npm/weui-miniprogram/form/form",
     "mp-dialog": "/miniprogram_npm/weui-miniprogram/dialog/dialog",
-    "activity-basic-info":"/components/activity-basic-info/activity-basic-info"
+    "activity-basic-info": "/components/activity-basic-info/activity-basic-info",
+    "activity-address-info": "/components/activity-address-info/activity-address-info",
+    "mp-toptips": "/miniprogram_npm/weui-miniprogram/toptips/toptips"
   }
 }

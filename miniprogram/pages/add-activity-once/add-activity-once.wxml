@@ -1,4 +1,6 @@
+<mp-toptips msg="{{ error }}" type="error" show="{{ !!error }}"></mp-toptips>
 <activity-basic-info id="activityBasicInfo"></activity-basic-info>
+<activity-address-info id="activityAddressInfo"></activity-address-info>
 <view class="weui-btn-area">
   <button class="weui-btn" type="primary" bindtap="submitForm">保存</button>
 </view>
