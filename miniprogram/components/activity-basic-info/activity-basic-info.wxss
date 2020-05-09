@@ -11,9 +11,3 @@
   padding-right: 10rpx;
   vertical-align: middle;
 }
-
-.img__title {
-  width: 40rpx;
-  height: 40rpx;
-  vertical-align: middle;
-}

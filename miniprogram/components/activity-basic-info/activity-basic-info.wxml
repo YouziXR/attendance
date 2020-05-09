@@ -3,8 +3,8 @@
  * @Date: 2020-04-28 18:49:58
  * @LastEditors: youzi
  * @LastEditTime: 2020-04-28 18:51:19 -->
-<mp-toptips msg="{{ error }}" type="error" show="{{ !!error }}"></mp-toptips>
 <mp-form id="form" rules="{{ rules }}" models="{{ formData }}">
+  <!-- 基础信息，保存在formData对象里 -->
   <mp-cells title="创建打卡">
     <mp-cell prop="name" show-error>
       <view slot="title" class="weui-label">
@@ -17,7 +17,7 @@
     <mp-cell title="补充描述">
       <input type="text" bindinput="formInputChange" data-field="description" class="weui-input" placeholder="选填" />
     </mp-cell>
-    <mp-cell prop="activityTime" title="开始时间" ext-class="">
+    <mp-cell prop="activityTime" title="开始时间" show-error>
       <view class="pick-time">
         <picker data-field="startDate" mode="date" value="{{ startDate }}" start="{{ startDate }}" bindchange="onDateTimeChange">
           {{ startDate }}
@@ -27,7 +27,7 @@
         </picker>
       </view>
     </mp-cell>
-    <mp-cell prop="activityTime" title="结束时间" ext-class="">
+    <mp-cell prop="activityTime" title="结束时间" show-error>
       <view class="pick-time">
         <picker data-field="endDate" mode="date" value="{{ endDate }}" start="{{ startDate }}" bindchange="onDateTimeChange">
           {{ endDate }}
@@ -37,26 +37,5 @@
         </picker>
       </view>
     </mp-cell>
-  </mp-cells>
-  <mp-cells title="地点设置" footer="{{addressFooter}}">
-    <mp-cell title="指定打卡地点">
-      <switch slot="footer" checked="{{addressChecked}}" type="switch" bindchange="onAddressChange"></switch>
-    </mp-cell>
-    <view wx:if="{{addressChecked}}">
-      <navigator url="../../pages/index/index" open-type="navigate">
-        <mp-cell>
-          <view slot="title">
-            定位
-            <image class="img__title" src="../../images/icons/locate.png" mode="widthFix" lazy-load="false" />
-          </view>
-        </mp-cell>
-      </navigator>
-      <mp-cell title="地点">
-        <input type="text" data-field="detailAddress" placeholder="详细地址（选填）" bindinput="formInputChange"></input>
-      </mp-cell>
-      <mp-cell title="打卡范围" footer="米">
-        <input value="500" type="number" bindinput="formInputChange"></input>
-      </mp-cell>
-    </view>
   </mp-cells>
 </mp-form>
