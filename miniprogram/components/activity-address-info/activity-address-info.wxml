@@ -1,0 +1,31 @@
+<!--
+ * @Description: 打卡地址位置信息，包括一个switch是否要提供位置信息，打卡地点（拉取地图定位）、详细位置（手动输入）、位置范围（手动输入，默认500米）
+ * @Author: youzi
+ * @Date: 2020-05-09 09:37:53
+ * @LastEditors: youzi
+ * @LastEditTime: 2020-05-09 09:56:54 
+ -->
+<mp-form id="form" rules="{{ rules }}" models="{{ formData }}">
+  <!-- 地点信息，保存在formData.address对象里 -->
+  <mp-cells title="地点设置" footer="{{addressFooter}}">
+    <mp-cell title="指定打卡地点">
+      <switch slot="footer" checked="{{addressChecked}}" type="switch" bindchange="onAddressSwitch"></switch>
+    </mp-cell>
+    <view wx:if="{{addressChecked}}">
+      <mp-cell prop="coordinate" hover link bind:tap="onLocationTap" show-error>
+        <view slot="title" class="weui-label">
+          定位
+          <image class="img__title" src="../../images/icons/locate.png" mode="widthFix" lazy-load="false" />
+        </view>
+        <text>{{absoluteAddr}}</text>
+      </mp-cell>
+      <mp-cell title="地点">
+        <input data-field="detail" placeholder="详细地址（选填）" value="{{formData.detail}}" bindinput="formInputChange"></input>
+      </mp-cell>
+      <mp-cell prop="range" title="打卡范围" footer="米">
+        <input data-field="range" value="{{formData.range}}" type="number" bindinput="formInputChange"></input>
+      </mp-cell>
+    </view>
+  </mp-cells>
+</mp-form>
+<get-location id="getLocation" bind:locatedevent="onLocatedEvent"></get-location>

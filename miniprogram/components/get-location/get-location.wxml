@@ -1,0 +1,3 @@
+<mp-dialog title="提示" show="{{showeDlg}}" bindbuttontap="tapDialogButton" buttons="{{[{text: '取消'}, {text: '确定'}]}}" mask-closable="{{false}}">
+  <view>{{contenteDlg}}</view>
+</mp-dialog>
