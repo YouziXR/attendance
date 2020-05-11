@@ -22,7 +22,7 @@
       <mp-cell title="地点">
         <input data-field="detail" placeholder="详细地址（选填）" value="{{formData.detail}}" bindinput="formInputChange"></input>
       </mp-cell>
-      <mp-cell prop="range" title="打卡范围" footer="米">
+      <mp-cell prop="range" title="打卡范围" footer="米" show-error>
         <input data-field="range" value="{{formData.range}}" type="number" bindinput="formInputChange"></input>
       </mp-cell>
     </view>

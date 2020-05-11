@@ -1,3 +1,11 @@
+<!--
+ * @Description: 创建单次打卡的页面，所有表单都是加载的组件，这个页面用于将各组件整合，并最终提交到后台。
+ * @backup: 主要表单校验放在了组件内部，最终提交时还会进行一步校验。
+ * @Author: youzi
+ * @Date: 2020-04-26 16:14:11
+ * @LastEditors: youzi
+ * @LastEditTime: 2020-05-11 14:29:55
+ -->
 <mp-toptips msg="{{ error }}" type="error" show="{{ !!error }}"></mp-toptips>
 <activity-basic-info id="activityBasicInfo"></activity-basic-info>
 <activity-address-info id="activityAddressInfo"></activity-address-info>

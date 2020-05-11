@@ -1,6 +1,4 @@
 // miniprogram/pages/add-activity-once/add-activity-once.js
-import dateFormat from '../../utils/date-format';
-
 Page({
   /**
    * 页面的初始数据
@@ -13,9 +11,9 @@ Page({
   },
 
   /**
-   * @desc:
-   * @param {type}
-   * @return:
+   * @desc: 提交按钮事件，触发各组件的校验函数submitForm，当组件抛出错误时，catch之后调用mp-toptops提示用户，并结束本函数的运行。
+   * @backup: 逻辑上采用异步函数同步化来写，所有校验函数都会返回promise对象，当前一个函数reject时，就不会继续执行下一个了；值得注意的是，有些组件可以返回为null，表示不需要填写这一项。
+   * @param {e}
    * @author: youzi
    * @Date: 2020-04-28 20:49:42
    */

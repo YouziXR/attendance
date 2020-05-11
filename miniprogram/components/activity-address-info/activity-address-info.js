@@ -50,9 +50,7 @@ Component({
     ],
     // 打卡地点相关，false表示不需要填写地点信息
     addressChecked: false,
-    addressFooter: '',
-    // 错误提示文字，也用来判断是否显示错误提示框
-    error: ''
+    addressFooter: ''
   },
 
   /**
@@ -109,7 +107,7 @@ Component({
     },
 
     /**
-     * @desc: 组件的locatedEvent触发的函数，接收定位坐标，如果授权失败则会清楚打卡的位置信息
+     * @desc: 组件的locatedEvent触发的函数，接收定位坐标，如果授权失败则会清除打卡的位置信息
      * @param {object} e e.detail保存了位置信息，如果为空对象，则表示授权失败
      * @author: youzi
      */
@@ -143,37 +141,22 @@ Component({
     },
 
     /**
-     * @desc: 组件外部点击提交时，在组件外手动调用selectComponent来触发这个方法
+     * @desc: 组件外部点击提交时，在组件外手动调用selectComponent来触发这个方法；
+     * @backup: 为什么要手动返回promise对象呢，因为如果单纯返回validate这个函数，无法给父组件传递参数，所以选择手动封装一层promise
+     * @return {promise}: 返回promise对象，如果不需要填写则返回null，校验成功调用res，失败调用rej，参数分别是表单信息和失败信息；
      * @author: youzi
      * @Date: 2020-04-28 20:26:18
      */
     submitForm() {
       return new Promise((res, rej) => {
         if (!this.data.addressChecked) {
-          res(null)
+          res(null);
           return null;
         }
         this.selectComponent('#form').validate((valid, err) => {
           valid ? res(this.data.formData) : rej({ errMsg: err[0].message });
         });
       });
-      let that = this;
-      this.selectComponent('#form').validate((valid, err) => {
-        if (!valid) {
-          console.error(err);
-          const errMsg = err[0].message;
-          if (err.length) {
-            that.setData({
-              error: errMsg
-            });
-          }
-        } else {
-          wx.showToast({
-            title: '校验通过'
-          });
-        }
-      });
-      console.log(this.data.formData);
     }
   }
 });

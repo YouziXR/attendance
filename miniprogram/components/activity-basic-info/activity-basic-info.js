@@ -16,11 +16,7 @@ Component({
    */
   data: {
     // 存放表单的对象
-    formData: {
-      address: {
-        range: 500
-      }
-    },
+    formData: {},
     // 用于防抖函数的timer
     pureTimer: false,
     // 表单规则
@@ -44,11 +40,6 @@ Component({
         }
       }
     ],
-    // 打卡地点相关，false表示不需要填写地点信息
-    addressChecked: false,
-    addressFooter: '',
-    // 错误提示文字，也用来判断是否显示错误提示框
-    error: '',
     // 打卡标题字符的最大值
     nameMaxLength: 15,
     // 打卡标题当前字符值
@@ -59,7 +50,6 @@ Component({
     startTime: '',
     endTime: ''
   },
-  observers: {},
   lifetimes: {
     ready() {
       this.initDataOnLoad();
@@ -145,31 +135,6 @@ Component({
     },
 
     /**
-     * @desc: 指定打卡地点switch变化的函数
-     * @param {object} e
-     * @author: youzi
-     * @Date: 2020-05-06 16:40:06
-     */
-    onAddressSwitch(e) {
-      const val = e.detail.value;
-      this.setData({
-        addressChecked: val
-      });
-      if (val) {
-        this.setData({
-          addressFooter: '打卡范围（300-2000）米'
-        });
-      } else {
-        this.setData({
-          [`formData.address`]: {
-            range: 500
-          },
-          addressFooter: ''
-        });
-      }
-    },
-
-    /**
      * @desc: 点击定位事件，手动调用get-location组件的GetLocation函数
      * @author: youzi
      * @Date: 2020-05-08 11:39:15
@@ -179,25 +144,8 @@ Component({
     },
 
     /**
-     * @desc: 组件的locatedEvent触发的函数，接收定位坐标，如果授权失败则会清楚打卡的位置信息
-     * @param {object} e e.detail保存了位置信息，如果为空对象，则表示授权失败
-     * @author: youzi
-     */
-    onLocatedEvent(e) {
-      if (!!Object.keys(e.detail).length) {
-        console.log(e.detail);
-      } else {
-        this.onAddressSwitch({
-          detail: {
-            value: false
-          }
-        });
-      }
-    },
-
-    /**
      * @desc: 组件外部点击提交时，在组件外手动调用selectComponent来触发这个方法
-     * @return {object} validatedData : 校验成功返回表单对象，校验失败返回{ errMsg: '' }
+     * @return {promise}: 返回promise对象，校验成功调用res，失败调用rej，参数分别是表单信息和失败信息；
      * @author: youzi
      * @Date: 2020-04-28 20:26:18
      */
